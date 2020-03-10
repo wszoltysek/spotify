@@ -1,0 +1,9 @@
+{% extends "dashboard.html" %}
+{% block content %}
+    <h3>Szczegóły artysty:</h3><br>
+    <ul>
+        Nazwa: {{ artist.name }}<br>
+        Opis: {{ artist.description }}<br>
+        Gatunek: {{ artist.genre }}
+    </ul>
+{% endblock %}

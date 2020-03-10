@@ -1,0 +1,9 @@
+{% extends "dashboard.html" %}
+{% block content %}
+    <h3>Dodaj gatunek</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Dodaj">
+    </form>
+{% endblock %}

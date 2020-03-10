@@ -1,0 +1,9 @@
+{% extends "dashboard.html" %}
+{% block content %}
+    <h3>Lista gatunków:</h3>
+    <ul>
+    {% for gen in genres %}
+        <li>{{ gen.name }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

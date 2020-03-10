@@ -1,28 +1,27 @@
 from django.db import models
+import datetime
 
 
 class Genre(models.Model):
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.name
 
 
 class Artist(models.Model):
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=128)
     description = models.CharField(max_length=128)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
 
 class Track(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
-    album = #TODO - DODANIE DO ALBUMU OPCJONALNIE ??
-    title = models.CharField(max_length=64)
-    label = models.CharField(max_length=100)
+    title = models.CharField(max_length=128)
+    label = models.CharField(max_length=128)
     length = models.FloatField()
     bpm = models.IntegerField()
-    release_date = models.DateField()
-    link_yt = models.TextField()
-
-
-class Album (models.Model):
-    name = models.CharField(max_length=128)
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
-
+    # release_date = models.DateField(datetime.timezone)
+    link_yt = models.CharField(max_length=200)
