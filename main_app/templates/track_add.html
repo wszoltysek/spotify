@@ -1,9 +1,18 @@
-{% extends "dashboard.html" %}
+{% extends "_dashboard_.html" %}
 {% block content %}
-    <h3>Dodaj utwór</h3>
+    <h3>Dodaj utwór</h3><br>
     <form action="" method="post">
+    <p>{{ form.errors }}</p>
+        <ul>
         {% csrf_token %}
-        {{ form.as_p }}
+        Artysta: {{ form.artist }} <a href="/addartist/">[Dodaj Artystę]</a><br>
+        Tytuł: {{ form.title }}<br>
+        Wytwórnia: {{ form.label }}<br>
+        Czas trwania: {{ form.length }}<br>
+        BPM: {{ form.bpm }}<br>
+        Data wydania: {{ form.release_date }} <br>
+        Link YT (ostatnie dane): {{ form.link_yt }} <br>
+        </ul><br>
         <input type="submit" value="Dodaj">
     </form>
 {% endblock %}

@@ -11,7 +11,7 @@ class IndexView(View):
 
 class DashboardView(View):
     def get(self, request):
-        return render(request, "dashboard.html")
+        return render(request, "_dashboard_.html")
 
 
 # GENRE:
@@ -26,7 +26,7 @@ class GenreAdd(View):
         form = GenreAddForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('')
+        return redirect('/genrelist/')
 
 
 class GenreList(View):
@@ -39,7 +39,8 @@ class GenreList(View):
 class GenreDetails(View):
     def get(self, request, id):
         genre = Genre.objects.get(pk=id)
-        ctx = {"genre": genre}
+        artist = Artist.objects.filter(genre_id=genre.id)
+        ctx = {"genre": genre, "artist": artist}
         return render(request, "genre_details.html", ctx)
 
 
@@ -57,7 +58,7 @@ class ArtistAdd(View):
         form = ArtistAddForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('')
+        return redirect('/artistlist/')
 
 
 class ArtistList(View):
@@ -70,7 +71,8 @@ class ArtistList(View):
 class ArtistDetails(View):
     def get(self, request, id):
         artist = Artist.objects.get(pk=id)
-        ctx = {"artist": artist}
+        track = Track.objects.filter(artist_id=artist.id)
+        ctx = {"artist": artist, "track": track}
         return render(request, "artist_details.html", ctx)
 
 
@@ -88,12 +90,15 @@ class TrackAdd(View):
         form = TrackAddForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('/dashboard/')
+            return redirect('/tracklist/')
+
+        ctx = {"form": form}
+        return render(request, "track_add.html", ctx)
 
 
 class TrackList(View):
     def get(self, request):
-        tracks = Track.objects.all()
+        tracks = Track.objects.all().order_by("artist__genre")
         ctx = {"tracks": tracks}
         return render(request, "track_list.html", ctx)
 
@@ -104,4 +109,14 @@ class TrackDetails(View):
         ctx = {"track": track}
         return render(request, "track_details.html", ctx)
 
-# TODO search, modify, delete
+
+def delete_track (request, id):
+    try:
+        track = Track.objects.get(pk=id)
+    except:
+        return redirect('/tracklist/')
+
+    track.delete()
+    return redirect('/tracklist/')
+
+# TODO search, modify

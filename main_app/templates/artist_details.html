@@ -1,9 +1,15 @@
-{% extends "dashboard.html" %}
+{% extends "_dashboard_.html" %}
 {% block content %}
     <h3>Szczegóły artysty:</h3><br>
     <ul>
         Nazwa: {{ artist.name }}<br>
         Opis: {{ artist.description }}<br>
         Gatunek: {{ artist.genre }}
+    </ul>
+    <p><b>Utwory artysty: </b></p>
+    <ul>
+    {% for tr in track %}
+        <li><a href="/track/{{ tr.id }}/">{{ tr.title }}</a></li>
+    {% endfor %}
     </ul>
 {% endblock %}

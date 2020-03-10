@@ -1,9 +1,9 @@
-{% extends "dashboard.html" %}
+{% extends "_dashboard_.html" %}
 {% block content %}
     <h3>Dodaj gatunek</h3>
     <form action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        Nazwa: {{ form.name }}
         <input type="submit" value="Dodaj">
     </form>
 {% endblock %}

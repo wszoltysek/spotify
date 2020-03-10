@@ -1,7 +1,11 @@
-{% extends "dashboard.html" %}
+{% extends "_dashboard_.html" %}
 {% block content %}
-    <h3>Gatunek:</h3>
+    <p>Gatunek:</p>
+    <h3>{{ genre.name }}</h3><br>
+    <p><b>Artyści w gatunku:</b></p>
     <ul>
-        {{ genre.name }}
+    {% for ar in artist %}
+        <li><a href="/artist/{{ ar.id }}/">{{ ar.name }}</a></li>
+    {% endfor %}
     </ul>
 {% endblock %}

@@ -1,13 +1,14 @@
-{% extends "dashboard.html" %}
+{% extends "_dashboard_.html" %}
 {% block content %}
-    <h3>Szczegóły utworu:</h3>
+    <h3>Szczegóły utworu:</h3><br>
     <ul>
-        <li>{{ track.artist }}</li>
-        <li>{{ track.title }}</li>
-        <li>{{ track.label }}</li>
-        <li>{{ track.length }}</li>
-        <li>{{ track.bpm }}</li>
-        <li>{{ track.release_date }}</li>
-        <iframe width="420" height="315" src="{{ track.link_yt }}"></iframe>
+        <li><b>Artysta: </b>{{ track.artist }}</li>
+        <li><b>Nazwa utworu: </b>{{ track.title }}</li>
+        <li><b>Wytwórnia: </b>{{ track.label }}</li>
+        <li><b>Czas trwania: </b>{{ track.length }} min.</li>
+        <li><b>BPM: </b>{{ track.bpm }}</li>
+        <li><b>Data wydania: </b>{{ track.release_date }}</li>
     </ul>
+        <p><b>Odtwórz:</b></p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ track.link_yt }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 {% endblock %}

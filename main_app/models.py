@@ -23,5 +23,6 @@ class Track(models.Model):
     label = models.CharField(max_length=128)
     length = models.FloatField()
     bpm = models.IntegerField()
-    # release_date = models.DateField(datetime.timezone)
+    release_date = models.DateField()
     link_yt = models.CharField(max_length=200)
+

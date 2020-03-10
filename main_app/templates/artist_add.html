@@ -1,11 +1,11 @@
-{% extends "dashboard.html" %}
+{% extends "_dashboard_.html" %}
 {% block content %}
     <h3>Dodaj artystę</h3><br>
     <form action="" method="post">
         {% csrf_token %}
         Nazwa: {{ form.name }}<br>
         Opis: {{ form.description }}<br>
-        Gatunek: {{ form.genre }}<br><br>
+        Gatunek: {{ form.genre }} <a href="/addgenre/">[Dodaj Gatunek]</a><br><br>
         <input type="submit" value="Dodaj">
     </form>
 {% endblock %}

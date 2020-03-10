@@ -34,6 +34,7 @@ urlpatterns = [
     path('addtrack/', TrackAdd.as_view()),
     path('tracklist/', TrackList.as_view()),
     path('track/<int:id>/', TrackDetails.as_view()),
+    path('track/delete/<int:id>/', delete_track),
 
     #USER-LINKS:
     path('login/', auth_views.LoginView.as_view(template_name='user/login.html'), name='login'),

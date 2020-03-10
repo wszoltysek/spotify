@@ -1,7 +1,12 @@
-{% extends "dashboard.html" %}
+{% extends "_dashboard_.html" %}
 {% block content %}
     <h3>Lista utworów</h3>
     <ul>
-        <li>{{ tracks }}</li>
+    {% for track in tracks %}
+        <li>{{ track.artist }} - {{ track.title }}<br>
+            <a href="/track/{{ track.id }}/">Szczegóły</a>
+            <a href="">Edytuj</a>
+            <a href="/track/delete/{{ track.id }}/">Usuń</a></li>
+    {% endfor %}
     </ul>
 {% endblock %}
