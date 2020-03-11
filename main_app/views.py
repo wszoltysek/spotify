@@ -1,7 +1,9 @@
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DeleteView
 
 from .models import *
 from .forms import *
@@ -16,11 +18,7 @@ class DashboardView(LoginRequiredMixin, View):
     login_url = '/login/'
 
     def get(self, request):
-        genre_count = Genre.objects.count()
-        artist_count = Artist.objects.count()
-        track_count = Track.objects.count()
-        ctx = {"genre_count": genre_count, "artist_count": artist_count, "track_count": track_count}
-        return render(request, "_dashboard_.html", ctx)
+        return render(request, "_dashboard_.html")
 
 
 # USER:
@@ -41,11 +39,41 @@ class UserRegister(View):
         return render(request, "user/register.html", ctx)
 
 
+class UserLogin(View):
+    def get(self, request):
+        form = LoginForm()
+        ctx = {"form": form}
+        return render(request, "user/login.html", ctx)
+
+    def post(self, request):
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(username=form.cleaned_data['login'], password=form.cleaned_data['password'])
+            if user is not None:
+                login(request, user)
+                return redirect("/dashboard/")
+            else:
+                return HttpResponse('Brak takiego użytownika lub błędne dane')
+
+
+class UserLogout(View):
+    def get(self, request):
+        return render(request, 'user/logout.html')
+
+    def post(self, request):
+        logout(request)
+        return redirect('/')
+
+
 class UserPanel(LoginRequiredMixin, View):
     login_url = '/login/'
 
     def get(self, request):
-        return render(request, "user/user_panel.html")
+        genre_count = Genre.objects.count()
+        artist_count = Artist.objects.count()
+        track_count = Track.objects.count()
+        ctx = {"genre_count": genre_count, "artist_count": artist_count, "track_count": track_count}
+        return render(request, "user/user_panel.html", ctx)
 
 
 # GENRE:
@@ -96,8 +124,6 @@ class GenreUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'genre_update_form.html'
 
 
-# TODO search
-
 # ARTIST:
 
 class ArtistAdd(LoginRequiredMixin, View):
@@ -144,13 +170,13 @@ class ArtistUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'artist_update_form.html'
 
 
-def delete_artist(request, id):
-    artist = Artist.objects.get(pk=id)
-    artist.delete()
-    return redirect('/artistlist/')
+class ArtistDelete(LoginRequiredMixin, DeleteView):
+    login_url = '/login/'
 
+    model = Artist
+    success_url = '/artistlist/'
+    template_name = 'confirm_delete.html'
 
-# TODO search
 
 # TRACK:
 
@@ -199,9 +225,9 @@ class TrackUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'track_update_form.html'
 
 
-def delete_track(request, id):
-    track = Track.objects.get(pk=id)
-    track.delete()
-    return redirect('/tracklist/')
+class TrackDelete(LoginRequiredMixin, DeleteView):
+    login_url = '/login/'
 
-# TODO search
+    model = Track
+    success_url = '/tracklist/'
+    template_name = 'confirm_delete.html'

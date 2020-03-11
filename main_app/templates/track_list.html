@@ -3,10 +3,7 @@
     <h3>Lista utworów</h3>
     <ul>
     {% for track in tracks %}
-        <li>{{ track.artist }} - {{ track.title }}<br>
-            <a href="/track/{{ track.id }}/">Szczegóły</a>
-            <a href="/track/update/{{ track.id }}/">Edytuj</a>
-            <a href="/track/delete/{{ track.id }}/">Usuń</a></li>
+        <li><a href="/track/{{ track.id }}/">{{ track.artist }} - {{ track.title }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}

@@ -2,7 +2,7 @@
 {% block content %}
     <h3>Szczegóły utworu:</h3><br>
     <ul>
-        <li><b>Artysta: </b>{{ track.artist }}</li>
+        <li><b>Artysta: </b><a href="/artist/{{ track.artist.id }}">{{ track.artist }}</a>
         <li><b>Nazwa utworu: </b>{{ track.title }}</li>
         <li><b>Wytwórnia: </b>{{ track.label }}</li>
         <li><b>Czas trwania: </b>{{ track.length }} min.</li>
@@ -11,4 +11,9 @@
     </ul>
         <p><b>Odtwórz:</b></p>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ track.link_yt }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <br>
+    <br>
+    <br>
+    <a href="/track/update/{{ track.id }}/">Edytuj utwór</a><br>
+    <a href="/track/delete/{{ track.id }}/">Usuń utwór</a>
 {% endblock %}
