@@ -1,0 +1,17 @@
+{% extends "_dashboard_.html" %}
+{% block content %}
+    <h3>Aktualizuj utwór</h3><br>
+    <form action="" method="post">
+        {% csrf_token %}
+        Artysta: {{ form.artist }}<br>
+        Tytuł: {{ form.title }}<br>
+        Wytwórnia: {{ form.label }}<br>
+        Czas trwania: {{ form.length }}<br>
+        BPM: {{ form.bpm }}<br>
+        Data wydania: {{ form.release_date }} <br>
+        Link YT (ostatnie dane): {{ form.link_yt }}
+        <br><br>
+        <input type="submit" value="Aktualizuj">
+    </form>
+{% endblock %}
+

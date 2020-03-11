@@ -1,7 +1,9 @@
 {% extends "_dashboard_.html" %}
 {% block content %}
     <p>Gatunek:</p>
-    <h3>{{ genre.name }}</h3><br>
+    <h3>{{ genre.name }}</h3>
+    <a href="/genre/update/{{ genre.id }}/">Aktualizuj gatunek</a><br>
+    <br><br>
     <p><b>Artyści w gatunku:</b></p>
     <ul>
     {% for ar in artist %}

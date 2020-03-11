@@ -1,5 +1,6 @@
-{% block body %}
-    <h3>Wyloguj się</h3>
+{% extends "_dashboard_.html" %}
+{% block content %}
+    <h3>Wyloguj się</h3><br>
     <form action="" method="post">
         {% csrf_token %}
         <input type="submit" value="Wyloguj">

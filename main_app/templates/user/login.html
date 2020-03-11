@@ -1,8 +1,9 @@
-{% block body %}
-    <h3>Zaloguj się</h3>
+{% extends "_dashboard_.html" %}
+{% block content %}
+    <h3>Zaloguj się</h3><br>
     <form action="" method="post">
         {% csrf_token %}
-        {{ form }}
+        {{ form.as_p }}<br>
         <input type="submit" value="Zaloguj">
     </form>
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends "_dashboard_.html" %}
+{% block content %}
+    <h3>Aktualizuj artystę</h3><br>
+    <form action="" method="post">
+        {% csrf_token %}
+        Nazwa: {{ form.name }}<br>
+        Opis: {{ form.description }}<br>
+        Gatunek: {{ form.genre }}<br><br>
+        <input type="submit" value="Aktualizuj">
+    </form>
+{% endblock %}

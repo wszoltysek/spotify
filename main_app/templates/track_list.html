@@ -5,7 +5,7 @@
     {% for track in tracks %}
         <li>{{ track.artist }} - {{ track.title }}<br>
             <a href="/track/{{ track.id }}/">Szczegóły</a>
-            <a href="">Edytuj</a>
+            <a href="/track/update/{{ track.id }}/">Edytuj</a>
             <a href="/track/delete/{{ track.id }}/">Usuń</a></li>
     {% endfor %}
     </ul>

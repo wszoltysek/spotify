@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import UpdateView
+
 from .models import *
 from .forms import *
 
@@ -11,7 +13,11 @@ class IndexView(View):
 
 class DashboardView(View):
     def get(self, request):
-        return render(request, "_dashboard_.html")
+        genre_count = Genre.objects.count()
+        artist_count = Artist.objects.count()
+        track_count = Track.objects.count()
+        ctx = {"genre_count": genre_count, "artist_count": artist_count, "track_count": track_count}
+        return render(request, "_dashboard_.html", ctx)
 
 
 # GENRE:
@@ -26,7 +32,10 @@ class GenreAdd(View):
         form = GenreAddForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('/genrelist/')
+            return redirect('/genrelist/')
+
+        ctx = {"form": form}
+        return render(request, "genre_add.html", ctx)
 
 
 class GenreList(View):
@@ -44,7 +53,14 @@ class GenreDetails(View):
         return render(request, "genre_details.html", ctx)
 
 
-# TODO search, modify, delete
+class GenreUpdate(UpdateView):
+    model = Genre
+    fields = '__all__'
+    success_url = '/genrelist/'
+    template_name = 'genre_update_form.html'
+
+
+# TODO search
 
 # ARTIST:
 
@@ -58,7 +74,10 @@ class ArtistAdd(View):
         form = ArtistAddForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('/artistlist/')
+            return redirect('/artistlist/')
+
+        ctx = {"form": form}
+        return render(request, "artist_add.html", ctx)
 
 
 class ArtistList(View):
@@ -76,7 +95,20 @@ class ArtistDetails(View):
         return render(request, "artist_details.html", ctx)
 
 
-# TODO search, modify, delete
+def delete_artist(request, id):
+    artist = Artist.objects.get(pk=id)
+    artist.delete()
+    return redirect('/artistlist/')
+
+
+class ArtistUpdate(UpdateView):
+    model = Artist
+    fields = '__all__'
+    success_url = '/artistlist/'
+    template_name = 'artist_update_form.html'
+
+
+# TODO search
 
 # TRACK:
 
@@ -110,13 +142,16 @@ class TrackDetails(View):
         return render(request, "track_details.html", ctx)
 
 
-def delete_track (request, id):
-    try:
-        track = Track.objects.get(pk=id)
-    except:
-        return redirect('/tracklist/')
-
+def delete_track(request, id):
+    track = Track.objects.get(pk=id)
     track.delete()
     return redirect('/tracklist/')
 
-# TODO search, modify
+
+class TrackUpdate(UpdateView):
+    model = Track
+    fields = '__all__'
+    success_url = '/tracklist/'
+    template_name = 'track_update_form.html'
+
+# TODO search

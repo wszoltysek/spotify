@@ -51,7 +51,7 @@
                     <a class="nav-link" href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color: white" href="">Wyloguj</a>
+                    <a class="nav-link" style="color: white" href="/logout/">Wyloguj</a>
                 </li>
             </ul>
         </div>
@@ -76,9 +76,9 @@
 <!-- Footer -->
 <footer class="py-5 bg-black">
     <div class="container">
-        <p style="color: white"><a href="/addgenre/"</a>DODAJ GATUNEK</p>
-        <p style="color: white"><a href="/addartist/"</a>DODAJ ARTYSTĘ</p>
-        <p style="color: white"><a href="/addtrack"</a>DODAJ UTWÓR</p>
+        <p style="color: white">Ilość gatunków: {{ genre_count }} <a href="/addgenre/">DODAJ GATUNEK</a></p>
+        <p style="color: white">Ilość artystów: {{ artist_count }} <a href="/addartist/">DODAJ ARTYSTĘ</a></p>
+        <p style="color: white">Ilość utworów: {{ track_count }} <a href="/addtrack">DODAJ UTWÓR</a></p>
         <p class="m-0 text-center text-white small">Copyright &copy; SE7EN 2019</p>
     </div>
     <!-- /.container -->

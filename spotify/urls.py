@@ -26,15 +26,19 @@ urlpatterns = [
     path('addgenre/', GenreAdd.as_view()),
     path('genrelist/', GenreList.as_view()),
     path('genre/<int:id>/', GenreDetails.as_view()),
+    path('genre/update/<pk>/', GenreUpdate.as_view()),
 
     path('addartist/', ArtistAdd.as_view()),
     path('artistlist/', ArtistList.as_view()),
     path('artist/<int:id>/', ArtistDetails.as_view()),
+    path('artist/delete/<int:id>/', delete_artist),
+    path('artist/update/<pk>/', ArtistUpdate.as_view()),
 
     path('addtrack/', TrackAdd.as_view()),
     path('tracklist/', TrackList.as_view()),
     path('track/<int:id>/', TrackDetails.as_view()),
     path('track/delete/<int:id>/', delete_track),
+    path('track/update/<pk>/', TrackUpdate.as_view()),
 
     #USER-LINKS:
     path('login/', auth_views.LoginView.as_view(template_name='user/login.html'), name='login'),

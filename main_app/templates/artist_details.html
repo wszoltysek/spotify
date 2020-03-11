@@ -6,6 +6,9 @@
         Opis: {{ artist.description }}<br>
         Gatunek: {{ artist.genre }}
     </ul>
+    <a href="/artist/update/{{ artist.id }}/">Edytuj artystę</a><br>
+    <a href="/artist/delete/{{ artist.id }}/">Usuń artystę</a>
+    <br><br>
     <p><b>Utwory artysty: </b></p>
     <ul>
     {% for tr in track %}
