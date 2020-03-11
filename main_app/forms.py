@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.forms import ModelForm, Textarea, TextInput
 
 from main_app.models import *
@@ -25,3 +27,11 @@ class TrackAddForm(ModelForm):
             'link_yt': TextInput(attrs={'placeholder': 'ex. ViwtNLUqkMY'}),
         }
 
+
+class UserRegisterForm(UserCreationForm):
+    username = forms.CharField(max_length=32)
+    email = forms.EmailField(max_length=128)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']

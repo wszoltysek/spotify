@@ -5,5 +5,6 @@
         {% csrf_token %}
         {{ form.as_p }}<br>
         <input type="submit" value="Zaloguj">
-    </form>
+    </form><br>
+    <p>Nie posiadasz konta?<br><a href="/register/">Zarejestruj się!</a></p>
 {% endblock %}

@@ -1,0 +1,7 @@
+{% extends "_dashboard_.html" %}
+{% block content %}
+    <h3>Panel użytkownika</h3><br>
+    <p><b>Zalogowany jako:</b><br> {{ user }}</p><br>
+    <p><a href="/password_change/">Zmień hasło</a></p><br>
+    <p><a href="/logout/">Wyloguj się</a></p>
+{% endblock %}

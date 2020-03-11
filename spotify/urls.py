@@ -40,8 +40,10 @@ urlpatterns = [
     path('track/delete/<int:id>/', delete_track),
     path('track/update/<pk>/', TrackUpdate.as_view()),
 
-    #USER-LINKS:
+    path('userpanel/', UserPanel.as_view()),
+    path('register/', UserRegister.as_view()),
     path('login/', auth_views.LoginView.as_view(template_name='user/login.html'), name='login'),
+    path('accounts/profile/', DashboardView.as_view()),
     path('logout/', auth_views.LogoutView.as_view(template_name='user/logout.html'), name='logout'),
     path('password_change/', auth_views.PasswordChangeView.as_view(), name='change-password'),
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(), name='change-password-done'),

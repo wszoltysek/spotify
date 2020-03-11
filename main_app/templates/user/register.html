@@ -1,0 +1,9 @@
+{% extends "_dashboard_.html" %}
+{% block content %}
+    <h3>Zarejestruj się</h3><br>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}<br>
+        <input type="submit" value="Zarejestruj">
+    </form>
+{% endblock %}
