@@ -2,7 +2,7 @@ import os
 import sys
 import pytest
 
-from main_app.tests.utils import create_fake_genre, create_fake_artist
+from main_app.tests.utils import create_fake_genre, create_fake_artist, create_fake_track
 
 sys.path.append(os.path.dirname(__file__))
 
@@ -24,3 +24,11 @@ def set_up_artist():
         data.append(artist)
     return data
 
+
+@pytest.fixture
+def set_up_track():
+    data = []
+    for _ in range(5):
+        track = create_fake_track()
+        data.append(track)
+    return data

@@ -22,3 +22,18 @@ def create_fake_artist():
         genre=new_genre
     )
     return new_artist
+
+
+def create_fake_track():
+    """Generate new artist and saves to database"""
+    new_artist = create_fake_artist()
+    new_track = Track.objects.create(
+        artist=new_artist,
+        title=faker.name(),
+        label=faker.word(),
+        length=randint(1, 5),
+        bpm=randint(1, 124),
+        release_date=faker.date(),
+        link_yt=faker.word()
+    )
+    return new_track
