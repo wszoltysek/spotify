@@ -56,7 +56,9 @@ class UserLogin(View):
                 return HttpResponse('Brak takiego użytownika lub błędne dane')
 
 
-class UserLogout(View):
+class UserLogout(LoginRequiredMixin, View):
+    login_url = '/login/'
+
     def get(self, request):
         return render(request, 'user/logout.html')
 
@@ -153,7 +155,9 @@ class ArtistList(LoginRequiredMixin, View):
         return render(request, "artist_list.html", ctx)
 
 
-class ArtistDetails(View):
+class ArtistDetails(LoginRequiredMixin, View):
+    login_url = '/login/'
+
     def get(self, request, id):
         artist = Artist.objects.get(pk=id)
         track = Track.objects.filter(artist_id=artist.id)

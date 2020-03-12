@@ -1,6 +1,6 @@
 {% extends "_dashboard_.html" %}
 {% block content %}
-    <h3>Lista gatunków:</h3>
+    <h3>GATUNKI</h3>
     <ul>
     {% for gen in genres %}
         <li><a href="/genre/{{ gen.id }}/">{{ gen.name }}</a></li>

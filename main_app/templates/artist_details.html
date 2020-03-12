@@ -4,7 +4,7 @@
     <ul>
         Nazwa: {{ artist.name }}<br>
         Opis: {{ artist.description }}<br>
-        Gatunek: {{ artist.genre }}
+        Gatunek: <a href="/genre/{{ artist.genre.id }}">{{ artist.genre }}</a>
     </ul>
     <a href="/artist/update/{{ artist.id }}/">Edytuj artystę</a><br>
     <a href="/artist/delete/{{ artist.id }}/">Usuń artystę</a>

@@ -1,6 +1,6 @@
 {% extends "_dashboard_.html" %}
 {% block content %}
-    <h3>Lista artystów</h3>
+    <h3>ARTYŚCI</h3>
     <ul>
     {% for artist in artists %}
         <li><a href="/artist/{{ artist.id }}/">{{ artist.name }}</a></li>
