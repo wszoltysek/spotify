@@ -21,7 +21,8 @@ Project fully developed in Django 2.2.6 and Python 3.7. Application has many fun
 
 ## Author
 
-**Wojciech Szołtysek** - project author [GitHub profile](https://github.com/wszoltysek/), [LinkedIn profile](https://www.linkedin.com/in/wszoltysek/)
+**Wojciech Szołtysek** - project author 
+[GitHub Profile](https://github.com/wszoltysek/), [LinkedIn Profile](https://www.linkedin.com/in/wszoltysek/)
 
 ## License
 
