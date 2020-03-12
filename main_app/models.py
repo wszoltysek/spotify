@@ -1,5 +1,4 @@
 from django.db import models
-import datetime
 
 
 class Genre(models.Model):
@@ -17,6 +16,7 @@ class Artist(models.Model):
     def __str__(self):
         return self.name
 
+
 class Track(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     title = models.CharField(max_length=128)
@@ -25,4 +25,3 @@ class Track(models.Model):
     bpm = models.IntegerField()
     release_date = models.DateField()
     link_yt = models.CharField(max_length=200)
-
