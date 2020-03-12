@@ -11,3 +11,14 @@ def create_fake_genre():
         name=faker.word()
     )
     return new_genre
+
+
+def create_fake_artist():
+    """Generate new artist and saves to database"""
+    new_genre = create_fake_genre()
+    new_artist = Artist.objects.create(
+        name=faker.word(),
+        description=faker.sentence(),
+        genre=new_genre
+    )
+    return new_artist
