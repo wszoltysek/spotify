@@ -25,7 +25,7 @@ def create_fake_artist():
 
 
 def create_fake_track():
-    """Generate new artist and saves to database"""
+    """Generate new track and saves to database"""
     new_artist = create_fake_artist()
     new_track = Track.objects.create(
         artist=new_artist,
