@@ -1,1 +1,28 @@
-1. First commit
+# SpotifyLight
+
+Project fully developed in Django 2.2.6 and Python 3.7. Application has many functionalities, such as:
+
+- user interface;
+- register/login/logout for multiple users;
+- adding:
+    - genres
+    - artists to genres
+    - tracks to artists
+- editing/removing all;
+- view all, play music from YT frame.
+
+
+## Built With
+
+- [PyCharm](https://www.jetbrains.com/pycharm/) - Python JetBrains IDE for developers
+- [Django 2.2.6](https://docs.djangoproject.com/pl/2.1/releases/2.0/) - Project Framework
+- [Python 3.7](https://www.python.org/downloads/release/python-370/) - Coding Language
+- [Bootstrap](https://startbootstrap.com/) - HTML, CSS, JS Framework
+
+## Author
+
+**Wojciech Szołtysek** - project author [GitHub profile](https://github.com/wszoltysek/), [LinkedIn profile](https://www.linkedin.com/in/wszoltysek/)
+
+## License
+
+[MIT License](https://choosealicense.com/licenses/mit/)
