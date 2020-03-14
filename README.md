@@ -11,6 +11,7 @@ Project fully developed in Django 2.2.6 and Python 3.7. Application has many fun
 - editing/removing all;
 - view all, play music from YT frame.
 
+Project covered with three tests (add data to database models).
 
 ## Built With
 
