@@ -74,7 +74,11 @@ class UserPanel(LoginRequiredMixin, View):
         genre_count = Genre.objects.count()
         artist_count = Artist.objects.count()
         track_count = Track.objects.count()
-        ctx = {"genre_count": genre_count, "artist_count": artist_count, "track_count": track_count}
+        ctx = {
+            "genre_count": genre_count,
+            "artist_count": artist_count,
+            "track_count": track_count
+        }
         return render(request, "user/user_panel.html", ctx)
 
 
