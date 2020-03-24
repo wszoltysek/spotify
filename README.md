@@ -2,6 +2,7 @@
 
 Project fully developed in Django 2.2.6 and Python 3.7. Application has many functionalities, such as:
 
+Individual for all:
 - user interface;
 - register/login/logout for multiple users;
 - adding:
@@ -11,7 +12,7 @@ Project fully developed in Django 2.2.6 and Python 3.7. Application has many fun
 - editing/removing all;
 - view all, play music from YT frame.
 
-Project covered with three tests (add data to database models).
+Project covered with three tests so far (add data to database models).
 
 ![](https://github.com/wszoltysek/spotify/blob/master/main_app/static/img/readme-photo.png?raw=true)
 
