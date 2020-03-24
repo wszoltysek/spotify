@@ -144,18 +144,21 @@ class ArtistAdd(LoginRequiredMixin, View):
     def post(self, request):
         form = ArtistAddForm(request.POST)
         if form.is_valid():
-            form.save()
+            Artist.objects.create(
+                user=request.user,
+                name=form.cleaned_data['name'],
+                description=form.cleaned_data['description'],
+                genre=form.cleaned_data['genre']
+            )
             return redirect('/artistlist/')
-
-        ctx = {"form": form}
-        return render(request, "artist_add.html", ctx)
+        return redirect('/artistlist/')
 
 
 class ArtistList(LoginRequiredMixin, View):
     login_url = '/login/'
 
     def get(self, request):
-        artists = Artist.objects.all()
+        artists = Artist.objects.filter(user=request.user).order_by("name")
         ctx = {"artists": artists}
         return render(request, "artist_list.html", ctx)
 
@@ -174,7 +177,7 @@ class ArtistUpdate(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
 
     model = Artist
-    fields = '__all__'
+    fields = ['name', 'description', 'genre']
     success_url = '/artistlist/'
     template_name = 'artist_update_form.html'
 

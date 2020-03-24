@@ -11,10 +11,17 @@ class GenreAddForm(forms.Form):
     user = forms.HiddenInput()
 
 
-class ArtistAddForm(ModelForm):
-    class Meta:
-        model = Artist
-        fields = '__all__'
+class ArtistAddForm(forms.Form):
+    user = forms.HiddenInput()
+    name = forms.CharField(max_length=128)
+    description = forms.CharField(max_length=128)
+    genre = forms.ModelChoiceField(queryset=Genre.objects.all())
+
+
+# class ArtistAddForm(ModelForm):
+#     class Meta:
+#         model = Artist
+#         fields = '__all__'
 
 
 class TrackAddForm(ModelForm):
