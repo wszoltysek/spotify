@@ -126,7 +126,7 @@ class GenreUpdate(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
 
     model = Genre
-    fields = '__all__'
+    fields = ['name']
     success_url = '/genrelist/'
     template_name = 'genre_update_form.html'
 
