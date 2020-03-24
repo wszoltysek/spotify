@@ -95,18 +95,19 @@ class GenreAdd(LoginRequiredMixin, View):
     def post(self, request):
         form = GenreAddForm(request.POST)
         if form.is_valid():
-            form.save()
+            Genre.objects.create(
+                name=form.cleaned_data['name'],
+                user=request.user
+            )
             return redirect('/genrelist/')
-
-        ctx = {"form": form}
-        return render(request, "genre_add.html", ctx)
+        return redirect('/genrelist/')
 
 
 class GenreList(LoginRequiredMixin, View):
     login_url = '/login/'
 
     def get(self, request):
-        genres = Genre.objects.all()
+        genres = Genre.objects.filter(user=request.user).order_by("name")
         ctx = {"genres": genres}
         return render(request, "genre_list.html", ctx)
 

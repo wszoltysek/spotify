@@ -6,10 +6,9 @@ from django.forms import ModelForm, TextInput
 from main_app.models import *
 
 
-class GenreAddForm(ModelForm):
-    class Meta:
-        model = Genre
-        fields = '__all__'
+class GenreAddForm(forms.Form):
+    name = forms.CharField(max_length=128)
+    user = forms.HiddenInput()
 
 
 class ArtistAddForm(ModelForm):
