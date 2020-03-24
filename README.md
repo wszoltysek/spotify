@@ -13,7 +13,7 @@ Project fully developed in Django 2.2.6 and Python 3.7. Application has many fun
 
 Project covered with three tests (add data to database models).
 
-![](https://github.com/wszoltysek/spotify/main_app/static/img/readme-photo.png)
+![](https://github.com/wszoltysek/spotify/blob/master/main_app/static/img/readme-photo.png?raw=true)
 
 ## Built With
 
