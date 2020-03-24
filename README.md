@@ -13,6 +13,8 @@ Project fully developed in Django 2.2.6 and Python 3.7. Application has many fun
 
 Project covered with three tests (add data to database models).
 
+![](https://github.com/wszoltysek/spotify/main_app/static/img/readme-photo.png)
+
 ## Built With
 
 - [PyCharm](https://www.jetbrains.com/pycharm/) - Python JetBrains IDE for developers
