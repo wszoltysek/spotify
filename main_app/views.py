@@ -71,9 +71,9 @@ class UserPanel(LoginRequiredMixin, View):
     login_url = '/login/'
 
     def get(self, request):
-        genre_count = Genre.objects.count()
-        artist_count = Artist.objects.count()
-        track_count = Track.objects.count()
+        genre_count = len(Genre.objects.filter(user=request.user))
+        artist_count = len(Artist.objects.filter(user=request.user))
+        track_count = len(Track.objects.filter(user=request.user))
         ctx = {
             "genre_count": genre_count,
             "artist_count": artist_count,
