@@ -3,7 +3,8 @@
     <h3>Zarejestruj się</h3><br>
     <form action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}<br>
+        {{ form.as_p }}<b style="color: red">{{ form.errors }}</b><br>
         <input type="submit" value="Zarejestruj">
-    </form>
+    </form><br>
+    <p>Posiadasz już konto?<br><a href="/login/">Zaloguj się!</a></p>
 {% endblock %}

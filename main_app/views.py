@@ -34,9 +34,10 @@ class UserRegister(View):
         if form.is_valid():
             form.save()
             return redirect('/login/')
-
-        ctx = {"form": form}
-        return render(request, "user/register.html", ctx)
+        else:
+            print(form.errors)
+            ctx = {"form": form}
+            return render(request, "user/register.html", ctx)
 
 
 class UserLogin(View):
