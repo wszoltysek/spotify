@@ -103,7 +103,10 @@ class GenreAdd(LoginRequiredMixin, View):
                 name=form.cleaned_data['name']
             )
             return redirect('/genrelist/')
-        return redirect('/genrelist/')
+        else:
+            print(form.errors)
+            ctx = {"form": form}
+            return render(request, "genre_add.html", ctx)
 
 
 class GenreList(LoginRequiredMixin, View):
@@ -132,6 +135,14 @@ class GenreUpdate(LoginRequiredMixin, UpdateView):
     fields = ['name']
     success_url = '/genrelist/'
     template_name = 'genre_update_form.html'
+
+
+class GenreDelete(LoginRequiredMixin, DeleteView):
+    login_url = '/login/'
+
+    model = Genre
+    success_url = '/genrelist/'
+    template_name = 'confirm_delete.html'
 
 
 # ARTIST:

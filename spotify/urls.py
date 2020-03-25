@@ -26,6 +26,7 @@ urlpatterns = [
     path('addgenre/', GenreAdd.as_view()),
     path('genrelist/', GenreList.as_view()),
     path('genre/<int:id>/', GenreDetails.as_view()),
+    path('genre/delete/<pk>/', GenreDelete.as_view()),
     path('genre/update/<pk>/', GenreUpdate.as_view()),
 
     path('addartist/', ArtistAdd.as_view()),

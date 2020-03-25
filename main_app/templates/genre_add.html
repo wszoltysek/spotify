@@ -1,6 +1,7 @@
 {% extends "_dashboard_.html" %}
 {% block content %}
     <h3>Dodaj gatunek</h3>
+    <b style="color: red">{{ form.errors }}</b><br>
     <form action="" method="post">
         {% csrf_token %}
         Nazwa: {{ form.name }}
