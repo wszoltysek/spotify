@@ -166,7 +166,10 @@ class ArtistAdd(LoginRequiredMixin, View):
                 genre=form.cleaned_data['genre']
             )
             return redirect('/artistlist/')
-        return redirect('/artistlist/')
+        else:
+            print(form.errors)
+            ctx = {"form": form}
+            return render(request, "artist_add.html", ctx)
 
 
 class ArtistList(LoginRequiredMixin, View):
