@@ -96,8 +96,8 @@ class GenreAdd(LoginRequiredMixin, View):
         form = GenreAddForm(request.POST)
         if form.is_valid():
             Genre.objects.create(
-                name=form.cleaned_data['name'],
-                user=request.user
+                user=request.user,
+                name=form.cleaned_data['name']
             )
             return redirect('/genrelist/')
         return redirect('/genrelist/')
@@ -138,6 +138,7 @@ class ArtistAdd(LoginRequiredMixin, View):
 
     def get(self, request):
         form = ArtistAddForm()
+        form.fields['genre'].queryset = Genre.objects.filter(user=request.user)
         ctx = {"form": form}
         return render(request, "artist_add.html", ctx)
 
@@ -197,24 +198,32 @@ class TrackAdd(LoginRequiredMixin, View):
 
     def get(self, request):
         form = TrackAddForm()
+        form.fields['artist'].queryset = Artist.objects.filter(user=request.user)
         ctx = {"form": form}
         return render(request, "track_add.html", ctx)
 
     def post(self, request):
         form = TrackAddForm(request.POST)
         if form.is_valid():
-            form.save()
+            Track.objects.create(
+                user=request.user,
+                artist=form.cleaned_data['artist'],
+                title=form.cleaned_data['title'],
+                label=form.cleaned_data['label'],
+                length=form.cleaned_data['length'],
+                bpm=form.cleaned_data['bpm'],
+                release_date=form.cleaned_data['release_date'],
+                link_yt=form.cleaned_data['link_yt']
+            )
             return redirect('/tracklist/')
-
-        ctx = {"form": form}
-        return render(request, "track_add.html", ctx)
+        return redirect('/tracklist/')
 
 
 class TrackList(LoginRequiredMixin, View):
     login_url = '/login/'
 
     def get(self, request):
-        tracks = Track.objects.all().order_by("artist__genre")
+        tracks = Track.objects.filter(user=request.user).order_by("artist")
         ctx = {"tracks": tracks}
         return render(request, "track_list.html", ctx)
 
@@ -232,7 +241,7 @@ class TrackUpdate(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
 
     model = Track
-    fields = '__all__'
+    fields = ['artist', 'title', 'label', 'length', 'bpm', 'release_date', 'link_yt']
     success_url = '/tracklist/'
     template_name = 'track_update_form.html'
 

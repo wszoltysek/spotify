@@ -23,7 +23,8 @@ class TrackAddForm(ModelForm):
         model = Track
         fields = ['artist', 'title', 'label', 'length', 'bpm', 'release_date', 'link_yt']
         widgets = {
-            'release_date': TextInput(attrs={'placeholder': 'ex. 2020-02-02'}),
+            'length': TextInput(attrs={'placeholder': '4.22'}),
+            'release_date': TextInput(attrs={'placeholder': 'YYYY-MM-DD'}),
             'link_yt': TextInput(attrs={'placeholder': 'ex. ViwtNLUqkMY'}),
         }
 
