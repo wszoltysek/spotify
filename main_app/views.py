@@ -54,7 +54,9 @@ class UserLogin(View):
                 login(request, user)
                 return redirect("/dashboard/")
             else:
-                return HttpResponse('Brak takiego użytownika lub błędne dane')
+                error = "Brak takiego użytkownika lub błędne hasło."
+                ctx = {"form": form, "error": error}
+                return render(request, "user/login.html", ctx)
 
 
 class UserLogout(LoginRequiredMixin, View):
