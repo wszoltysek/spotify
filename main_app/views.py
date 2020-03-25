@@ -49,7 +49,10 @@ class UserLogin(View):
     def post(self, request):
         form = LoginForm(request.POST)
         if form.is_valid():
-            user = authenticate(username=form.cleaned_data['login'], password=form.cleaned_data['password'])
+            user = authenticate(
+                username=form.cleaned_data['login'],
+                password=form.cleaned_data['password']
+            )
             if user is not None:
                 login(request, user)
                 return redirect("/dashboard/")
