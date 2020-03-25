@@ -6,28 +6,22 @@ from django.forms import ModelForm, TextInput
 from main_app.models import *
 
 
-class GenreAddForm(forms.Form):
-    name = forms.CharField(max_length=128)
-    user = forms.HiddenInput()
+class GenreAddForm(ModelForm):
+    class Meta:
+        model = Genre
+        fields = ['name']
 
 
-class ArtistAddForm(forms.Form):
-    user = forms.HiddenInput()
-    name = forms.CharField(max_length=128)
-    description = forms.CharField(max_length=128)
-    genre = forms.ModelChoiceField(queryset=Genre.objects.all())
-
-
-# class ArtistAddForm(ModelForm):
-#     class Meta:
-#         model = Artist
-#         fields = '__all__'
+class ArtistAddForm(ModelForm):
+    class Meta:
+        model = Artist
+        fields = ['name', 'description', 'genre']
 
 
 class TrackAddForm(ModelForm):
     class Meta:
         model = Track
-        fields = '__all__'
+        fields = ['artist', 'title', 'label', 'length', 'bpm', 'release_date', 'link_yt']
         widgets = {
             'release_date': TextInput(attrs={'placeholder': 'ex. 2020-02-02'}),
             'link_yt': TextInput(attrs={'placeholder': 'ex. ViwtNLUqkMY'}),
