@@ -216,7 +216,10 @@ class TrackAdd(LoginRequiredMixin, View):
                 link_yt=form.cleaned_data['link_yt']
             )
             return redirect('/tracklist/')
-        return redirect('/tracklist/')
+        else:
+            print(form.errors)
+            ctx = {"form": form}
+            return render(request, "track_add.html", ctx)
 
 
 class TrackList(LoginRequiredMixin, View):

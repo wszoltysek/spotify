@@ -2,15 +2,14 @@
 {% block content %}
     <h3>Dodaj utwór</h3><br>
     <form action="" method="post">
-    <p>{{ form.errors }}</p>
         <ul>
         {% csrf_token %}
         Artysta: {{ form.artist }} <a href="/addartist/">[Dodaj Artystę]</a><br>
         Tytuł: {{ form.title }}<br>
         Wytwórnia: {{ form.label }}<br>
-        Czas trwania: {{ form.length }}<br>
+        Czas trwania: {{ form.length }}<b style="color: red">{{ form.errors.length }}</b><br>
         BPM: {{ form.bpm }}<br>
-        Data wydania: {{ form.release_date }} <br>
+            Data wydania: {{ form.release_date }}<b style="color: red">{{ form.errors.release_date }}</b><br>
         Link YT (ostatnie dane): {{ form.link_yt }} <br>
         </ul><br>
         <input type="submit" value="Dodaj">
