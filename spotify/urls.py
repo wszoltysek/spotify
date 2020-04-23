@@ -56,5 +56,7 @@ urlpatterns = [
     path('api/genrelist/', GenreListApiView.as_view(), name='genre-list'),
     path('api/genre/<int:pk>/', GenreApiView.as_view(), name='genre-details'),
     path('api/artistlist/', ArtistListApiView.as_view(), name='artist-list'),
-    path('api/artist/<int:pk>/', ArtistApiView.as_view(), name='artist-details')
+    path('api/artist/<int:pk>/', ArtistApiView.as_view(), name='artist-details'),
+    path('api/tracklist/', TrackListApiView.as_view(), name='track-list'),
+    path('api/track/<int:pk>/', TrackApiView.as_view(), name='track-details')
 ]

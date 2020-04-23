@@ -21,3 +21,13 @@ class ArtistListApiView(generics.ListCreateAPIView):
 class ArtistApiView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Artist.objects.all()
     serializer_class = ArtistSerializer
+
+
+class TrackListApiView(generics.ListCreateAPIView):
+    queryset = Track.objects.all()
+    serializer_class = TrackSerializer
+
+
+class TrackApiView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Track.objects.all()
+    serializer_class = TrackSerializer
