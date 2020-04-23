@@ -6,3 +6,8 @@ from main_app.serializers import *
 class GenreListApiView(generics.ListCreateAPIView):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
+
+
+class GenreApiView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer

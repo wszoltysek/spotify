@@ -53,5 +53,6 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password-reset-complete'),
 
-    path('api/genrelist/', GenreListApiView.as_view(), name='genre-list')
+    path('api/genrelist/', GenreListApiView.as_view(), name='genre-list'),
+    path('api/genre/<int:pk>/', GenreApiView.as_view(), name='genre-details')
 ]
