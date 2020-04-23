@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from main_app.views import *
+from main_app.api_views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -51,4 +52,6 @@ urlpatterns = [
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password-reset-done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password-reset-complete'),
+
+    path('api/genrelist/', GenreListApiView.as_view(), name='genre-list')
 ]
