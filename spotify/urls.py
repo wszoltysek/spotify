@@ -54,5 +54,7 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password-reset-complete'),
 
     path('api/genrelist/', GenreListApiView.as_view(), name='genre-list'),
-    path('api/genre/<int:pk>/', GenreApiView.as_view(), name='genre-details')
+    path('api/genre/<int:pk>/', GenreApiView.as_view(), name='genre-details'),
+    path('api/artistlist/', ArtistListApiView.as_view(), name='artist-list'),
+    path('api/artist/<int:pk>/', ArtistApiView.as_view(), name='artist-details')
 ]

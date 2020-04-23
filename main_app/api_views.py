@@ -11,3 +11,13 @@ class GenreListApiView(generics.ListCreateAPIView):
 class GenreApiView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
+
+
+class ArtistListApiView(generics.ListCreateAPIView):
+    queryset = Artist.objects.all()
+    serializer_class = ArtistSerializer
+
+
+class ArtistApiView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Artist.objects.all()
+    serializer_class = ArtistSerializer
