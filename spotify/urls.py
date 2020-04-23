@@ -16,10 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
+from rest_framework import routers
+
 from main_app.views import *
 from main_app.api_views import *
 
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+
 urlpatterns = [
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
     path('admin/', admin.site.urls),
     path('', IndexView.as_view()),
     path('dashboard/', DashboardView.as_view()),

@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.contrib.auth.models import User
 from main_app.models import *
 
 
@@ -21,3 +22,9 @@ class TrackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Track
         fields = '__all__'
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['url', 'username', 'email', 'last_login', 'is_superuser', 'is_staff']

@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, viewsets, permissions
 from main_app.models import *
 from main_app.serializers import *
 
@@ -31,3 +31,12 @@ class TrackListApiView(generics.ListCreateAPIView):
 class TrackApiView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Track.objects.all()
     serializer_class = TrackSerializer
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
