@@ -22,7 +22,8 @@ from main_app.views import *
 from main_app.api_views import *
 
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
+router.register(r'api/users', UsersViewSet)
+router.register(r'api/register', CreateUserApiView)
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -1,6 +1,9 @@
 from rest_framework import generics, viewsets, permissions
+from rest_framework.mixins import CreateModelMixin
+
 from main_app.models import *
 from main_app.serializers import *
+from django.contrib.auth import get_user_model
 
 
 class GenreListApiView(generics.ListCreateAPIView):
@@ -33,7 +36,15 @@ class TrackApiView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TrackSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
+# USER:
+
+
+class CreateUserApiView(CreateModelMixin, viewsets.GenericViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserRegisterSerializer
+
+
+class UsersViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
