@@ -6,14 +6,21 @@ from main_app.serializers import *
 from django.contrib.auth import get_user_model
 
 
+# GENRE:
+
 class GenreListApiView(generics.ListCreateAPIView):
-    queryset = Genre.objects.all()
     serializer_class = GenreSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Genre.objects.filter(user=user)
 
 
 class GenreApiView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class ArtistListApiView(generics.ListCreateAPIView):
