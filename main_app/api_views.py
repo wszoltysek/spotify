@@ -1,9 +1,8 @@
-from rest_framework import generics, viewsets, permissions
+from rest_framework import generics, viewsets, permissions, filters
 from rest_framework.mixins import CreateModelMixin
 
 from main_app.models import *
 from main_app.serializers import *
-from django.contrib.auth import get_user_model
 
 
 # GENRE:
@@ -11,10 +10,12 @@ from django.contrib.auth import get_user_model
 class GenreListApiView(generics.ListCreateAPIView):
     serializer_class = GenreSerializer
     permission_classes = [permissions.IsAuthenticated]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
 
     def get_queryset(self):
         user = self.request.user
-        return Genre.objects.filter(user=user)
+        return Genre.objects.filter(user=user).order_by('name')
 
 
 class GenreApiView(generics.RetrieveUpdateDestroyAPIView):
