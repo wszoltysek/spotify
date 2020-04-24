@@ -51,3 +51,11 @@ class UsersViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+class UserPanelApiView(generics.ListAPIView):
+    serializer_class = TrackSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return Track.objects.filter(user=user)

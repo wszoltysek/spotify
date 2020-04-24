@@ -26,7 +26,7 @@ router.register(r'api/users', UsersViewSet)
 router.register(r'api/register', CreateUserApiView)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     path('admin/', admin.site.urls),
@@ -67,5 +67,7 @@ urlpatterns = [
     path('api/artistlist/', ArtistListApiView.as_view(), name='artist-list'),
     path('api/artist/<int:pk>/', ArtistApiView.as_view(), name='artist-details'),
     path('api/tracklist/', TrackListApiView.as_view(), name='track-list'),
-    path('api/track/<int:pk>/', TrackApiView.as_view(), name='track-details')
+    path('api/track/<int:pk>/', TrackApiView.as_view(), name='track-details'),
+
+    path('api/userpanel/', UserPanelApiView.as_view(), name='usertrack')
 ]
