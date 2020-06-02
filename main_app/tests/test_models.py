@@ -96,3 +96,22 @@ def test_edit_genre():
     # Then:
     assert previous_genre_name != genre.name
     assert genre.name == "Rock"
+
+
+@pytest.mark.django_db
+def test_edit_artist():
+    """
+    Should edit created artist and save it to the database.
+    """
+    # Given:
+    artist = create_fake_artist()
+    # When:
+    previous_artist_name = artist.name
+    artist.name = "Madonna"
+    previous_artist_description = artist.description
+    artist.description = "Singer"
+    # Then:
+    assert previous_artist_name != artist.name
+    assert previous_artist_description != artist.description
+    assert artist.name == "Madonna"
+    assert artist.description == "Singer"
