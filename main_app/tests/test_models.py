@@ -21,7 +21,7 @@ def test_create_user():
 
 
 @pytest.mark.django_db
-def test_create_genre():
+def test_create_genre(set_up_genre):
     """
     Should create new genre object and save it to database
     """
@@ -31,13 +31,13 @@ def test_create_genre():
     new_genre = create_fake_genre()
     # Then:
     assert Genre.objects.count() == genres_before + 1
-    assert Genre.objects.count() == 1
-    assert new_genre.pk == 1
-    assert new_genre.user.pk == 2
+    assert Genre.objects.count() == 6
+    assert new_genre.pk == 6
+    assert new_genre.user.pk == 7
 
 
 @pytest.mark.django_db
-def test_create_artist():
+def test_create_artist(set_up_artist):
     """
     Should create new artist object and save it to database
     """
@@ -47,12 +47,12 @@ def test_create_artist():
     new_artist = create_fake_artist()
     # Then:
     assert Artist.objects.count() == artists_before + 1
-    assert Artist.objects.count() == 1
-    assert new_artist.pk == 1
+    assert Artist.objects.count() == 6
+    assert new_artist.pk == 6
 
 
 @pytest.mark.django_db
-def test_create_track():
+def test_create_track(set_up_track):
     """
     Should create new track object and save it to database
     """
@@ -62,8 +62,8 @@ def test_create_track():
     new_track = create_fake_track()
     # Then:
     assert Track.objects.count() == tracks_before + 1
-    assert Track.objects.count() == 1
-    assert new_track.pk == 1
+    assert Track.objects.count() == 6
+    assert new_track.pk == 6
 
 
 # TESTS FOR EDIT MODELS:
