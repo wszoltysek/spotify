@@ -1,3 +1,4 @@
+faker
 djangorestframework
 Django
 psycopg2-binary
