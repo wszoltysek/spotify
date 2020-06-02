@@ -22,12 +22,12 @@ from main_app.views import *
 from main_app.api_views import *
 
 router = routers.DefaultRouter()
-router.register(r'api/users', UsersViewSet)
-router.register(r'api/register', CreateUserApiView)
+router.register(r"api/users", UsersViewSet)
+router.register(r"api/register", CreateUserApiView)
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api-auth/', include("rest_framework.urls", namespace="rest_framework")),
 
     path('admin/', admin.site.urls),
     path('', IndexView.as_view()),
@@ -55,19 +55,19 @@ urlpatterns = [
     path('register/', UserRegister.as_view()),
     path('login/', UserLogin.as_view()),
     path('logout/', UserLogout.as_view()),
-    path('password_change/', auth_views.PasswordChangeView.as_view(), name='change-password'),
-    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(), name='change-password-done'),
-    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password-reset'),
-    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password-reset-done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password-reset-complete'),
+    path('password_change/', auth_views.PasswordChangeView.as_view(), name="change-password"),
+    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(), name="change-password-done"),
+    path('password_reset/', auth_views.PasswordResetView.as_view(), name="password-reset"),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name="password-reset-done"),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name="password-reset-confirm"),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name="password-reset-complete"),
 
-    path('api/genrelist/', GenreListApiView.as_view(), name='genre-list'),
-    path('api/genre/<int:pk>/', GenreApiView.as_view(), name='genre-details'),
-    path('api/artistlist/', ArtistListApiView.as_view(), name='artist-list'),
-    path('api/artist/<int:pk>/', ArtistApiView.as_view(), name='artist-details'),
-    path('api/tracklist/', TrackListApiView.as_view(), name='track-list'),
-    path('api/track/<int:pk>/', TrackApiView.as_view(), name='track-details'),
+    path('api/genrelist/', GenreListApiView.as_view(), name="genre-list"),
+    path('api/genre/<int:pk>/', GenreApiView.as_view(), name="genre-details"),
+    path('api/artistlist/', ArtistListApiView.as_view(), name="artist-list"),
+    path('api/artist/<int:pk>/', ArtistApiView.as_view(), name="artist-details"),
+    path('api/tracklist/', TrackListApiView.as_view(), name="track-list"),
+    path('api/track/<int:pk>/', TrackApiView.as_view(), name="track-details"),
 
-    path('api/userpanel/', UserPanelApiView.as_view(), name='usertrack')
+    path('api/userpanel/', UserPanelApiView.as_view(), name="usertrack")
 ]

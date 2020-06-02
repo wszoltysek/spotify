@@ -11,11 +11,11 @@ class GenreListApiView(generics.ListCreateAPIView):
     serializer_class = GenreSerializer
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [filters.SearchFilter]
-    search_fields = ['name']
+    search_fields = ["name"]
 
     def get_queryset(self):
         user = self.request.user
-        return Genre.objects.filter(user=user).order_by('name')
+        return Genre.objects.filter(user=user).order_by("name")
 
 
 class GenreApiView(generics.RetrieveUpdateDestroyAPIView):
@@ -56,7 +56,7 @@ class UsersViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = User.objects.all().order_by('-date_joined')
+    queryset = User.objects.all().order_by("-date_joined")
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
 

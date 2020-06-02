@@ -9,28 +9,28 @@ class GenreSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Genre
-        fields = '__all__'
+        fields = "__all__"
 
 
 class ArtistSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Artist
-        fields = '__all__'
+        fields = "__all__"
 
 
 class TrackSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Track
-        fields = '__all__'
+        fields = "__all__"
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'last_login', 'is_superuser', 'is_staff']
+        fields = ["url", "username", "email", "last_login", "is_superuser", "is_staff"]
 
 
 UserModel = get_user_model()
@@ -41,13 +41,13 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         write_only=True,
         required=True,
         # help_text='Leave empty if no change needed',
-        style={'input_type': 'password', 'placeholder': 'Password'}
+        style={"input_type": "password", "placeholder": "Password"}
     )
 
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'first_name', 'last_name', 'password')
+        fields = ("url", "username", "email", "first_name", "last_name", "password")
 
     def create(self, validated_data):
-        validated_data['password'] = make_password(validated_data.get('password'))
+        validated_data["password"] = make_password(validated_data.get("password"))
         return super(UserRegisterSerializer, self).create(validated_data)

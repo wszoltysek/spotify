@@ -15,7 +15,7 @@ class IndexView(View):
 
 
 class DashboardView(LoginRequiredMixin, View):
-    login_url = '/login/'
+    login_url = "/login/"
 
     def get(self, request):
         return render(request, "_dashboard_.html")
@@ -33,7 +33,7 @@ class UserRegister(View):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/login/')
+            return redirect("/login/")
         else:
             print(form.errors)
             ctx = {"form": form}
@@ -50,8 +50,8 @@ class UserLogin(View):
         form = LoginForm(request.POST)
         if form.is_valid():
             user = authenticate(
-                username=form.cleaned_data['login'],
-                password=form.cleaned_data['password']
+                username=form.cleaned_data["login"],
+                password=form.cleaned_data["password"]
             )
             if user is not None:
                 login(request, user)
@@ -63,18 +63,18 @@ class UserLogin(View):
 
 
 class UserLogout(LoginRequiredMixin, View):
-    login_url = '/login/'
+    login_url = "/login/"
 
     def get(self, request):
-        return render(request, 'user/logout.html')
+        return render(request, "user/logout.html")
 
     def post(self, request):
         logout(request)
-        return redirect('/')
+        return redirect("/")
 
 
 class UserPanel(LoginRequiredMixin, View):
-    login_url = '/login/'
+    login_url = "/login/"
 
     def get(self, request):
         genre_count = len(Genre.objects.filter(user=request.user))
@@ -91,7 +91,7 @@ class UserPanel(LoginRequiredMixin, View):
 # GENRE:
 
 class GenreAdd(LoginRequiredMixin, View):
-    login_url = '/login/'
+    login_url = "/login/"
 
     def get(self, request):
         form = GenreAddForm()
@@ -103,9 +103,9 @@ class GenreAdd(LoginRequiredMixin, View):
         if form.is_valid():
             Genre.objects.create(
                 user=request.user,
-                name=form.cleaned_data['name']
+                name=form.cleaned_data["name"]
             )
-            return redirect('/genrelist/')
+            return redirect("/genrelist/")
         else:
             print(form.errors)
             ctx = {"form": form}
@@ -113,7 +113,7 @@ class GenreAdd(LoginRequiredMixin, View):
 
 
 class GenreList(LoginRequiredMixin, View):
-    login_url = '/login/'
+    login_url = "/login/"
 
     def get(self, request):
         genres = Genre.objects.filter(user=request.user).order_by("name")
@@ -122,7 +122,7 @@ class GenreList(LoginRequiredMixin, View):
 
 
 class GenreDetails(LoginRequiredMixin, View):
-    login_url = '/login/'
+    login_url = "/login/"
 
     def get(self, request, id):
         genre = Genre.objects.get(pk=id)
@@ -132,30 +132,30 @@ class GenreDetails(LoginRequiredMixin, View):
 
 
 class GenreUpdate(LoginRequiredMixin, UpdateView):
-    login_url = '/login/'
+    login_url = "/login/"
 
     model = Genre
-    fields = ['name']
-    success_url = '/genrelist/'
-    template_name = 'genre_update_form.html'
+    fields = ["name"]
+    success_url = "/genrelist/"
+    template_name = "genre_update_form.html"
 
 
 class GenreDelete(LoginRequiredMixin, DeleteView):
-    login_url = '/login/'
+    login_url = "/login/"
 
     model = Genre
-    success_url = '/genrelist/'
-    template_name = 'confirm_delete.html'
+    success_url = "/genrelist/"
+    template_name = "confirm_delete.html"
 
 
 # ARTIST:
 
 class ArtistAdd(LoginRequiredMixin, View):
-    login_url = '/login/'
+    login_url = "/login/"
 
     def get(self, request):
         form = ArtistAddForm()
-        form.fields['genre'].queryset = Genre.objects.filter(user=request.user)
+        form.fields["genre"].queryset = Genre.objects.filter(user=request.user)
         ctx = {"form": form}
         return render(request, "artist_add.html", ctx)
 
@@ -164,11 +164,11 @@ class ArtistAdd(LoginRequiredMixin, View):
         if form.is_valid():
             Artist.objects.create(
                 user=request.user,
-                name=form.cleaned_data['name'],
-                description=form.cleaned_data['description'],
-                genre=form.cleaned_data['genre']
+                name=form.cleaned_data["name"],
+                description=form.cleaned_data["description"],
+                genre=form.cleaned_data["genre"]
             )
-            return redirect('/artistlist/')
+            return redirect("/artistlist/")
         else:
             print(form.errors)
             ctx = {"form": form}
@@ -176,7 +176,7 @@ class ArtistAdd(LoginRequiredMixin, View):
 
 
 class ArtistList(LoginRequiredMixin, View):
-    login_url = '/login/'
+    login_url = "/login/"
 
     def get(self, request):
         artists = Artist.objects.filter(user=request.user).order_by("name")
@@ -185,7 +185,7 @@ class ArtistList(LoginRequiredMixin, View):
 
 
 class ArtistDetails(LoginRequiredMixin, View):
-    login_url = '/login/'
+    login_url = "/login/"
 
     def get(self, request, id):
         artist = Artist.objects.get(pk=id)
@@ -195,30 +195,30 @@ class ArtistDetails(LoginRequiredMixin, View):
 
 
 class ArtistUpdate(LoginRequiredMixin, UpdateView):
-    login_url = '/login/'
+    login_url = "/login/"
 
     model = Artist
-    fields = ['name', 'description', 'genre']
-    success_url = '/artistlist/'
-    template_name = 'artist_update_form.html'
+    fields = ["name", "description", "genre"]
+    success_url = "/artistlist/"
+    template_name = "artist_update_form.html"
 
 
 class ArtistDelete(LoginRequiredMixin, DeleteView):
-    login_url = '/login/'
+    login_url = "/login/"
 
     model = Artist
-    success_url = '/artistlist/'
-    template_name = 'confirm_delete.html'
+    success_url = "/artistlist/"
+    template_name = "confirm_delete.html"
 
 
 # TRACK:
 
 class TrackAdd(LoginRequiredMixin, View):
-    login_url = '/login/'
+    login_url = "/login/"
 
     def get(self, request):
         form = TrackAddForm()
-        form.fields['artist'].queryset = Artist.objects.filter(user=request.user)
+        form.fields["artist"].queryset = Artist.objects.filter(user=request.user)
         ctx = {"form": form}
         return render(request, "track_add.html", ctx)
 
@@ -227,15 +227,15 @@ class TrackAdd(LoginRequiredMixin, View):
         if form.is_valid():
             Track.objects.create(
                 user=request.user,
-                artist=form.cleaned_data['artist'],
-                title=form.cleaned_data['title'],
-                label=form.cleaned_data['label'],
-                length=form.cleaned_data['length'],
-                bpm=form.cleaned_data['bpm'],
-                release_date=form.cleaned_data['release_date'],
-                link_yt=form.cleaned_data['link_yt']
+                artist=form.cleaned_data["artist"],
+                title=form.cleaned_data["title"],
+                label=form.cleaned_data["label"],
+                length=form.cleaned_data["length"],
+                bpm=form.cleaned_data["bpm"],
+                release_date=form.cleaned_data["release_date"],
+                link_yt=form.cleaned_data["link_yt"]
             )
-            return redirect('/tracklist/')
+            return redirect("/tracklist/")
         else:
             print(form.errors)
             ctx = {"form": form}
@@ -243,7 +243,7 @@ class TrackAdd(LoginRequiredMixin, View):
 
 
 class TrackList(LoginRequiredMixin, View):
-    login_url = '/login/'
+    login_url = "/login/"
 
     def get(self, request):
         tracks = Track.objects.filter(user=request.user).order_by("artist")
@@ -252,7 +252,7 @@ class TrackList(LoginRequiredMixin, View):
 
 
 class TrackDetails(LoginRequiredMixin, View):
-    login_url = '/login/'
+    login_url = "/login/"
 
     def get(self, request, id):
         track = Track.objects.get(pk=id)
@@ -261,17 +261,17 @@ class TrackDetails(LoginRequiredMixin, View):
 
 
 class TrackUpdate(LoginRequiredMixin, UpdateView):
-    login_url = '/login/'
+    login_url = "/login/"
 
     model = Track
-    fields = ['artist', 'title', 'label', 'length', 'bpm', 'release_date', 'link_yt']
-    success_url = '/tracklist/'
-    template_name = 'track_update_form.html'
+    fields = ["artist", "title", "label", "length", "bpm", "release_date", "link_yt"]
+    success_url = "/tracklist/"
+    template_name = "track_update_form.html"
 
 
 class TrackDelete(LoginRequiredMixin, DeleteView):
-    login_url = '/login/'
+    login_url = "/login/"
 
     model = Track
-    success_url = '/tracklist/'
-    template_name = 'confirm_delete.html'
+    success_url = "/tracklist/"
+    template_name = "confirm_delete.html"
