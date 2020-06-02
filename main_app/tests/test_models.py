@@ -134,3 +134,19 @@ def test_edit_track():
     assert previous_track_release_date != track.release_date
     assert track.title == "New title"
     assert track.release_date == "2020-06-02"
+
+
+# TESTS FOR DELETE MODELS:
+
+@pytest.mark.django_db
+def test_delete_user():
+    """
+    Should create user and delete it.
+    """
+    # Given:
+    user = create_fake_user()
+    users_before_deletion = User.objects.count()
+    # When:
+    user.delete()
+    # Then:
+    assert User.objects.count() == users_before_deletion - 1
