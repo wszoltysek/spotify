@@ -60,6 +60,9 @@ class UserLogin(View):
                 error = "Brak takiego użytkownika lub błędne hasło."
                 ctx = {"form": form, "error": error}
                 return render(request, "user/login.html", ctx)
+        else:
+            ctx = {"form": form}
+            return render(request, "user/login.html", ctx)
 
 
 class UserLogout(LoginRequiredMixin, View):
