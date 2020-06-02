@@ -159,11 +159,11 @@ def test_delete_genre():
     """
     # Given:
     genre = create_fake_genre()
-    genre_before_deletion = Genre.objects.count()
+    genres_before_deletion = Genre.objects.count()
     # When:
     genre.delete()
     # Then:
-    assert Genre.objects.count() == genre_before_deletion - 1
+    assert Genre.objects.count() == genres_before_deletion - 1
 
 
 @pytest.mark.django_db
@@ -173,8 +173,22 @@ def test_delete_artist():
     """
     # Given:
     artist = create_fake_artist()
-    artist_before_deletion = Artist.objects.count()
+    artists_before_deletion = Artist.objects.count()
     # When:
     artist.delete()
     # Then:
-    assert Artist.objects.count() == artist_before_deletion - 1
+    assert Artist.objects.count() == artists_before_deletion - 1
+
+
+@pytest.mark.django_db
+def test_delete_track():
+    """
+    Should create track and delete it.
+    """
+    # Given:
+    track = create_fake_track()
+    tracks_before_deletion = Track.objects.count()
+    # When:
+    track.delete()
+    # Then:
+    assert Track.objects.count() == tracks_before_deletion - 1
