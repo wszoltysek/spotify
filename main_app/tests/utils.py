@@ -29,6 +29,7 @@ def create_fake_artist():
     Generate new artist and saves to database
     """
     new_artist = Artist.objects.create(
+        user=create_fake_user(),
         name=faker.word(),
         description=faker.sentence(),
         genre=create_fake_genre()
@@ -41,6 +42,7 @@ def create_fake_track():
     Generate new track and saves to database
     """
     new_track = Track.objects.create(
+        user=create_fake_user(),
         artist=create_fake_artist(),
         title=faker.name(),
         label=faker.word(),
