@@ -76,3 +76,12 @@ def test_view_password_reset_get():
     response = client.get("/password_reset/")
     assert response.status_code == 200
 
+
+def test_view_user_panel_get():
+    response = client.get("/userpanel/")
+    assert response.status_code == 302
+
+
+def test_view_user_panel_post():
+    response = client.post("/userpanel/")
+    assert response.status_code == 302
