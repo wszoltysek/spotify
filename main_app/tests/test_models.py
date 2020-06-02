@@ -81,3 +81,18 @@ def test_edit_user():
     # Then:
     assert previous_user_name != user.username
     assert user.username == "Wojtek"
+
+
+@pytest.mark.django_db
+def test_edit_genre():
+    """
+    Should edit created genre and save it to the database.
+    """
+    # Given:
+    genre = create_fake_genre()
+    # When:
+    previous_genre_name = genre.name
+    genre.name = "Rock"
+    # Then:
+    assert previous_genre_name != genre.name
+    assert genre.name == "Rock"
