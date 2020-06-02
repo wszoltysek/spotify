@@ -2,7 +2,7 @@
 
 Project fully developed in Django 2.2.6 and Python 3.7. Application has many functionalities, such as:
 
-Individual for all:
+**Individual for all:**
 - user interface;
 - register/login/logout for multiple users;
 - adding:
@@ -12,7 +12,14 @@ Individual for all:
 - editing/removing all;
 - view all, play music from YT frame.
 
-Project covered with three tests so far (add data to database models).
+**Test coverage:**
+
+Project covered with unit tests (pytest module):
+- Create, Edit, Delete MODELS tests
+- Views tests (get & post)
+
+Parametrized tests, parametrized fixtures, Given-When-Then methodology etc.
+
 
 **Update:** Project REST API Backend in progress.
 
