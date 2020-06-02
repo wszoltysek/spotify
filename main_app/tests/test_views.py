@@ -138,3 +138,55 @@ def test_view_genre_delete_post():
     genre = create_fake_genre()
     response = client.post(f"/genre/delete/{genre.pk}/")
     assert response.status_code == 302
+
+
+# ARTIST VIEWS:
+
+def test_view_artist_add_get():
+    response = client.get("/addartist/")
+    assert response.status_code == 302
+
+
+def test_view_artist_add_post():
+    response = client.post("/addartist/")
+    assert response.status_code == 302
+
+
+def test_view_artist_list_get():
+    response = client.get("/artistlist/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_artist_details_get():
+    artist = create_fake_artist()
+    response = client.get(f"/artist/{artist.pk}/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_artist_edit_get():
+    artist = create_fake_artist()
+    response = client.get(f"/artist/update/{artist.pk}/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_artist_edit_post():
+    artist = create_fake_artist()
+    response = client.post(f"/artist/update/{artist.pk}/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_artist_delete_get():
+    artist = create_fake_artist()
+    response = client.get(f"/artist/delete/{artist.pk}/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_artist_delete_post():
+    artist = create_fake_artist()
+    response = client.post(f"/artist/delete/{artist.pk}/")
+    assert response.status_code == 302
