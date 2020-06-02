@@ -1,3 +1,4 @@
+import pytest
 from django.test import Client
 from main_app.tests.utils import *
 
@@ -84,4 +85,56 @@ def test_view_user_panel_get():
 
 def test_view_user_panel_post():
     response = client.post("/userpanel/")
+    assert response.status_code == 302
+
+
+# GENRE VIEWS:
+
+def test_view_genre_add_get():
+    response = client.get("/addgenre/")
+    assert response.status_code == 302
+
+
+def test_view_genre_add_post():
+    response = client.post("/addgenre/")
+    assert response.status_code == 302
+
+
+def test_view_genre_list_get():
+    response = client.get("/genrelist/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_genre_details_get():
+    genre = create_fake_genre()
+    response = client.get(f"/genre/{genre.pk}/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_genre_edit_get():
+    genre = create_fake_genre()
+    response = client.get(f"/genre/update/{genre.pk}/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_genre_edit_post():
+    genre = create_fake_genre()
+    response = client.post(f"/genre/update/{genre.pk}/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_genre_delete_get():
+    genre = create_fake_genre()
+    response = client.get(f"/genre/delete/{genre.pk}/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_genre_delete_post():
+    genre = create_fake_genre()
+    response = client.post(f"/genre/delete/{genre.pk}/")
     assert response.status_code == 302
