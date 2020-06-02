@@ -18,7 +18,7 @@ Project covered with unit tests (pytest module):
 - Create, Edit, Delete MODELS tests
 - Views tests (get & post)
 
-Parametrized tests, parametrized fixtures, Given-When-Then methodology etc.
+Parametrized tests, parametrized fixtures with comphrehenions, Given-When-Then methodology etc.
 
 
 **Update:** Project REST API Backend in progress.
