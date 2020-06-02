@@ -1,12 +1,14 @@
 from faker import Faker
 from main_app.models import *
-from random import randint, choice
+from random import randint
 
 faker = Faker("pl_PL")
 
 
 def create_fake_genre():
-    """Generate new genre and saves to database"""
+    """
+    Generate new genre and saves to database
+    """
     new_genre = Genre.objects.create(
         name=faker.word()
     )
@@ -14,7 +16,9 @@ def create_fake_genre():
 
 
 def create_fake_artist():
-    """Generate new artist and saves to database"""
+    """
+    Generate new artist and saves to database
+    """
     new_genre = create_fake_genre()
     new_artist = Artist.objects.create(
         name=faker.word(),
@@ -25,7 +29,9 @@ def create_fake_artist():
 
 
 def create_fake_track():
-    """Generate new track and saves to database"""
+    """
+    Generate new track and saves to database
+    """
     new_artist = create_fake_artist()
     new_track = Track.objects.create(
         artist=new_artist,
