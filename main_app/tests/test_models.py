@@ -115,3 +115,22 @@ def test_edit_artist():
     assert previous_artist_description != artist.description
     assert artist.name == "Madonna"
     assert artist.description == "Singer"
+
+
+@pytest.mark.django_db
+def test_edit_track():
+    """
+    Should edit created track and save it to the database.
+    """
+    # Given:
+    track = create_fake_track()
+    # When:
+    previous_track_title = track.title
+    track.title = "New title"
+    previous_track_release_date = track.release_date
+    track.release_date = "2020-06-02"
+    # Then:
+    assert previous_track_title != track.title
+    assert previous_track_release_date != track.release_date
+    assert track.title == "New title"
+    assert track.release_date == "2020-06-02"
