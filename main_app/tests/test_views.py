@@ -4,6 +4,7 @@ from main_app.tests.utils import *
 
 client = Client()
 
+
 # HOMEPAGE / DASHBOARD VIEWS:
 
 def test_view_homepage_get():
@@ -189,4 +190,56 @@ def test_view_artist_delete_get():
 def test_view_artist_delete_post():
     artist = create_fake_artist()
     response = client.post(f"/artist/delete/{artist.pk}/")
+    assert response.status_code == 302
+
+
+# TRACK VIEWS:
+
+def test_view_track_add_get():
+    response = client.get("/addtrack/")
+    assert response.status_code == 302
+
+
+def test_view_track_add_post():
+    response = client.post("/addtrack/")
+    assert response.status_code == 302
+
+
+def test_view_track_list_get():
+    response = client.get("/tracklist/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_track_details_get():
+    track = create_fake_track()
+    response = client.get(f"/track/{track.pk}/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_track_edit_get():
+    track = create_fake_track()
+    response = client.get(f"/track/update/{track.pk}/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_track_edit_post():
+    track = create_fake_track()
+    response = client.post(f"/track/update/{track.pk}/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_track_delete_get():
+    track = create_fake_track()
+    response = client.get(f"/track/delete/{track.pk}/")
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_view_track_delete_post():
+    track = create_fake_track()
+    response = client.post(f"/track/delete/{track.pk}/")
     assert response.status_code == 302
