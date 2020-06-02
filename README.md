@@ -15,7 +15,7 @@ Project fully developed in Django 2.2.6 and Python 3.7. Application has many fun
 **Test coverage:**
 
 Project covered with unit tests (pytest module):
-- Create, Edit, Delete MODELS tests
+- Models tests (create, update, delete)
 - Views tests (get & post)
 
 Using fixtures with comphrehenions, Given-When-Then methodology, DRY principle etc.
