@@ -64,3 +64,20 @@ def test_create_track():
     assert Track.objects.count() == tracks_before + 1
     assert Track.objects.count() == 1
     assert new_track.pk == 1
+
+
+# TESTS FOR EDIT MODELS:
+
+@pytest.mark.django_db
+def test_edit_user():
+    """
+    Should edit created user and save it to the database.
+    """
+    # Given:
+    user = create_fake_user()
+    # When:
+    previous_user_name = user.username
+    user.username = "Wojtek"
+    # Then:
+    assert previous_user_name != user.username
+    assert user.username == "Wojtek"
