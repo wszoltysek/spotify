@@ -164,3 +164,17 @@ def test_delete_genre():
     genre.delete()
     # Then:
     assert Genre.objects.count() == genre_before_deletion - 1
+
+
+@pytest.mark.django_db
+def test_delete_artist():
+    """
+    Should create artist and delete it.
+    """
+    # Given:
+    artist = create_fake_artist()
+    artist_before_deletion = Artist.objects.count()
+    # When:
+    artist.delete()
+    # Then:
+    assert Artist.objects.count() == artist_before_deletion - 1
